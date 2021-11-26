@@ -21,14 +21,13 @@ mixin wrapLink(link, prefix='', onlyBlock=false)
             |#[!= text || link]
 
 mixin image( filename )
-    - var is_sprite = name.startsWith('sprite-')
-    - var url = '/assets/img/' + (is_sprite ? `sprite.svg#${name.replace('sprite-', '')}` : `${filename}`)
+    - var is_sprite = filename.startsWith('sprite-')
+    - var url = '/assets/img/' + (is_sprite ? `sprite.svg#${filename.replace('sprite-', '')}` : `${filename}`)
     if (is_sprite)
         svg&attributes(attributes)
             use(xlink:href=url)
     else 
-        img(data-src=url)&attributes(attributes)
-
+        img(src=url)&attributes(attributes)
 
 mixin textBtn(text)
     button.text-button&attributes(attributes)
