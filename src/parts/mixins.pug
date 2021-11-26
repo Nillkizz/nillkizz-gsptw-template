@@ -20,14 +20,14 @@ mixin wrapLink(link, prefix='', onlyBlock=false)
         unless onlyBlock
             |#[!= text || link]
 
-mixin icon( name )
+mixin image( filename )
     - var is_sprite = name.startsWith('sprite-')
-    - var url = '/assets/img/icons/' + (is_sprite ? `sprite.svg#${name.replace('sprite-', '')}` : `${name}.svg`)
+    - var url = '/assets/img/' + (is_sprite ? `sprite.svg#${name.replace('sprite-', '')}` : `${filename}`)
     if (is_sprite)
-        svg.icon&attributes(attributes).fill-current
+        svg&attributes(attributes)
             use(xlink:href=url)
     else 
-        img(data-src=url).lazy.icon&attributes(attributes)
+        img(data-src=url)&attributes(attributes)
 
 
 mixin textBtn(text)
